@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gynecologist Checkup</title>
+    {% load static %}
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-image: url("{% static 'bg.jpg' %}");
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .container {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 10px;
+            box-sizing: border-box;
+            max-width: 600px;
+            width: 100%;
+            color: #000;
+        }
+        h1, label {
+            text-align: center;
+        }
+        form {
+            padding: 20px 0;
+        }
+        input[type="radio"] {
+            margin-right: 10px;
+        }
+        input[type="submit"] {
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            padding: 10px 20px;
+            cursor: pointer;
+            border-radius: 5px;
+            display: block;
+            margin: 0 auto;
+            margin-top: 10px;
+        }
+        input[type="submit"]:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Gynecologist Checkup</h1>
+        <p style="text-align: center; font-style: italic; color: #666;">Please note that this diagnosis is general in nature and should not be considered a substitute for professional medical advice. Always consult a healthcare professional for accurate diagnosis and treatment.</p>
+        <form id="diagnosisForm" onsubmit="return diagnose()">
+            <label for="symptoms">What is your primary concern?</label><br>
+            <input type="checkbox" id="menstrualIssues" name="symptoms" value="Menstrual issues">
+            <label for="menstrualIssues">A) Menstrual issues</label><br>
+            <input type="checkbox" id="pelvicPain" name="symptoms" value="Pelvic pain">
+            <label for="pelvicPain">B) Pelvic pain</label><br>
+            <input type="checkbox" id="abnormalBleeding" name="symptoms" value="Abnormal bleeding">
+            <label for="abnormalBleeding">C) Abnormal bleeding</label><br>
+            <input type="checkbox" id="vaginalDischarge" name="symptoms" value="Vaginal discharge">
+            <label for="vaginalDischarge">D) Vaginal discharge</label><br><br>
+
+            <input type="submit" value="Submit">
+        </form>
+    </div>
+    <script>
+        function diagnose() {
+            var symptoms = document.querySelectorAll('input[name="symptoms"]:checked');
+            var medicines = [];
+
+            symptoms.forEach(function(symptom) {
+                var value = symptom.value;
+                switch (value) {
+                    case "Menstrual issues":
+                        medicines.push("Oral contraceptives");
+                        break;
+                    case "Pelvic pain":
+                        medicines.push("Naproxen and NSAIDs");
+                        break;
+                    case "Abnormal bleeding":
+                        medicines.push("Tranexamic acid");
+                        break;
+                    case "Vaginal discharge":
+                        medicines.push("Antibiotic pills or creams");
+                        break;
+                    // Add cases for other symptoms
+                }
+            });
+
+            var prescription = "Prescribed Medicines: " + medicines.join(", ");
+            alert(prescription);
+
+            return false; // Prevent form submission
+        }
+    </script>
+</body>
+</html>

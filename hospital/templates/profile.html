@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Profile</title>
+    {% load static %}
+    <style>
+        /* CSS for the background image and profile container */
+        body {
+            background-image: url("{% static 'bg.jpg' %}");
+            background-size: cover;
+            background-position: center;
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .medical-history {
+            display: none; /* Initially hide the medical history section */
+        }
+        .profile-container {
+            background-color: rgba(255, 255, 255, 0.9);
+            border-radius: 8px;
+            padding: 20px;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+            text-align: center; /* Align profile content center */
+            margin-bottom: 20px; /* Add margin to separate from medical history */
+        }
+
+        .profile-container h2 {
+            margin-bottom: 20px;
+        }
+
+        .profile-container p {
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+
+        /* Style for the profile image */
+        .profile-image {
+            width: 150px; /* Adjust the width as needed */
+            height: 150px; /* Adjust the height as needed */
+            border-radius: 50%; /* Make the image round */
+            margin-bottom: 20px;
+        }
+        .medical-history {
+            display: none; /* Initially hide the medical history section */
+        }
+        .appointment-date {
+            margin-top: 20px;
+            font-weight: bold;
+        }
+        .appointment-list {
+            margin-bottom: 20px;
+            padding-left: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="profile-container">
+        <h2>User Profile</h2>
+        <img src="{% static 'user.jpg' %}" alt="Default Profile Photo" class="profile-image">
+        <p>User ID: {{ user.id }}</p>
+        <p>Username: {{ user.username }}</p>
+        <p>Email: {{ user.email }}</p>
+    
+    <a href="#" id="show-medical-history">Medical History</a>
+
+    <!-- Medical History Section -->
+    <div class="medical-history">
+        <h3>All Appointments</h3>
+        {% if all_appointments %}
+            {% regroup all_appointments by appoint_datetime.date as appointment_dates %}
+            {% for date_group in appointment_dates %}
+                <div class="appointment-date">{{ date_group.grouper }}</div>
+                <ul class="appointment-list">
+                    {% for appointment in date_group.list %}
+                        <li>
+                            <strong>Patient Name:</strong> {{ appointment.p_name }}<br>
+                            <strong>Phone Number:</strong> {{ appointment.p_phone_no }}<br>
+                            <strong>Address:</strong> {{ appointment.p_address }}<br>
+                            <strong>Date of Birth:</strong> {{ appointment.dob }}<br>
+                            <strong>Blood Group:</strong> {{ appointment.blood_group }}<br>
+                            <strong>Disease:</strong> {{ appointment.disease_nm}}<br>
+
+                            <strong>Appointment Date & Time:</strong> {{ appointment.appoint_datetime }}<br>
+                        </li>
+                    {% endfor %}
+                </ul>
+            {% endfor %}
+        {% else %}
+            <p>No appointment history found.</p>
+        {% endif %}
+    </div>
+</div>
+    <script>
+        // JavaScript to toggle visibility of medical history section
+        document.getElementById('show-medical-history').addEventListener('click', function() {
+            var medicalHistorySection = document.querySelector('.medical-history');
+            if (medicalHistorySection.style.display === 'none') {
+                medicalHistorySection.style.display = 'block';
+            } else {
+                medicalHistorySection.style.display = 'none';
+            }
+        });
+    </script>
+</body>
+</html>

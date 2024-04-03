@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Orthopedist Checkup</title>
+    {% load static %}
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-image: url("{% static 'bg.jpg' %}");
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .container {
+            background-color: rgba(255, 255, 255, 0.9); /* Black box with transparency */
+            padding: 20px;
+            border-radius: 10px;
+            box-sizing: border-box;
+            max-width: 600px;
+            width: 100%;
+            color: #000;
+        }
+        h1, label {
+            text-align: center;
+        }
+        form {
+            padding: 20px 0;
+        }
+        input[type="checkbox"],
+        input[type="radio"] {
+            margin-right: 10px;
+        }
+        input[type="submit"] {
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            padding: 10px 20px;
+            cursor: pointer;
+            border-radius: 5px;
+            display: block;
+            margin: 0 auto;
+            margin-top: 10px;
+        }
+        input[type="submit"]:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Orthopedist Checkup</h1>
+        <p style="text-align: center; font-style: italic; color: #666;">Please note that this diagnosis is general in nature and should not be considered a substitute for professional medical advice. Always consult a healthcare professional for accurate diagnosis and treatment.</p>
+        <form id="diagnosisForm" onsubmit="return diagnose()">
+            <label for="bodyPart">Question : Which area of your body is experiencing discomfort?</label><br>
+            <input type="checkbox" id="knee" name="bodyPart" value="Knee">
+            <label for="knee">A) Knee</label><br>
+            <input type="checkbox" id="shoulder" name="bodyPart" value="Shoulder">
+            <label for="shoulder">B) Shoulder</label><br>
+            <input type="checkbox" id="back" name="bodyPart" value="Back">
+            <label for="back">C) Back</label><br>
+            <input type="checkbox" id="other" name="bodyPart" value="Other">
+            <label for="other">D) Other (please specify)</label><br><br>
+
+            <input type="submit" value="Submit">
+        </form>
+    </div>
+
+    <script>
+        function diagnose() {
+            var bodyPart = document.querySelectorAll('input[name="bodyPart"]:checked');
+            var medicines = [];
+
+            bodyPart.forEach(function(bodyPart) {
+                var value = bodyPart.value;
+                switch (value) {
+                    case "Knee":
+                        medicines.push("Hyaluronic Acid Injections");
+                        break;
+                    case "Shoulder":
+                        medicines.push("Muscle Relaxants");
+                        break;
+                    case "Back":
+                        medicines.push("Nonsteroidal Anti-Inflammatory Drugs in the affected area");
+                        break;
+                    case "Other (please specify)":
+                        medicines.push("Opt for physical therapy");
+                        break;
+                    // Add cases for other bodyPart
+                }
+            });
+
+            var prescription = "Prescribed Medicines: " + medicines.join(", ");
+            alert(prescription);
+
+            return false; // Prevent form submission
+        }
+    </script>
+</body>
+</html>

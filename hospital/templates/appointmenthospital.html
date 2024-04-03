@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Appointment Form</title>
+    {% load static %}
+    <link rel="stylesheet" href="styles.css"> <!-- Link to your CSS file -->
+
+<style>
+  body {
+    font-family: 'Poppins', sans-serif;
+    background-color: #f4f4f4;
+    background-image: url("{% static 'bg.jpg' %}");
+}
+
+.container {
+    width: 50%;
+    margin: 50px auto;
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    
+}
+
+h2 {
+    text-align: center;
+    color: #333;
+    font-family: 'Poppins',sans-serif;
+}
+
+form {
+    margin-top: 20px;
+}
+
+label {
+    display: block;
+    margin-bottom: 5px;
+    color: #333;
+}
+
+input[type="text"],
+input[type="tel"],
+textarea,
+input[type="datetime-local"],
+input[type="date"] {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+button {
+    padding: 10px 20px;
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #0056b3;
+}
+
+</style>  </head>
+<body>
+
+<div class="container">
+    <h2>Appointment For Hospital</h2>
+    <form method="POST" action="{% url 'submit_appointment' %}" id="feedback-form">
+        {% csrf_token %}
+        
+
+        <label for="p_name">Patient Name:</label>
+        <input type="text" id="p_name" name="p_name">
+
+        <label for="p_phone_no">Phone Number:</label>
+        <input type="tel" id="p_phone_no" name="p_phone_no" required>
+
+        <label for="p_address">Address:</label>
+        <textarea id="p_address" name="p_address"></textarea>
+
+        <label for="dob">Date of Birth:</label>
+        <input type="date" id="dob" name="dob">
+
+        <label for="blood_group">Blood Group:</label>
+        <input type="text" id="blood_group" name="blood_group">
+
+        <label for="appoint_datetime">Appointment Date and Time:</label>
+        <input type="datetime-local" id="appoint_datetime" name="appoint_datetime" required>
+
+        <label for="disease_nm">Disease:</label>
+        <input type="text" id="disease_nm" name="disease_nm" required>
+
+        <button type="submit">Submit</button>
+    </form>
+</div>
+<div id="popup-message" style="display: none;">
+    <h1> <center>Your appointment has been successfully booked</center> </h1>
+</div>
+
+<script>
+    // JavaScript to show popup and hide after 5 seconds
+    document.getElementById('feedback-form').addEventListener('submit', function(event) {
+        event.preventDefault(); // Prevent form submission
+        document.getElementById('popup-message').style.display = 'block'; // Show popup
+        setTimeout(function() {
+            document.getElementById('popup-message').style.display = 'none'; // Hide popup after 5 seconds
+            // After hiding the popup, submit the form
+            document.getElementById('feedback-form').submit();
+        }, 5000);
+    });
+</script>
+
+</body>
+</html>

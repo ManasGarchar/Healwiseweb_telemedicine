@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Minor Severity - Telemedicine</title>
+{% load static %}
+<style>
+  body {
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
+    background-color: #000;
+    background-image: url("{% static 'bg2.jpg' %}");
+    background-size: cover;
+    background-position: center;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .container {
+    background-color: rgba(250, 250, 250, 0.7); /* Adjust the transparency here */
+    border-radius: 10px;
+    padding: 20px;
+    max-width: 600px;
+    width: 100%;
+    text-align: center;
+  }
+
+  .disease-box {
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    padding: 10px;
+    margin-bottom: 10px;
+    cursor: pointer;
+    background-color:  #7797ff;
+    text-decoration: none; /* Remove default link underline */
+    display: block; /* Display each box as a block element */
+    width: 80%; /* Adjust the width of the boxes */
+    margin: 0 auto; /* Center align the boxes */
+  }
+  
+  .disease-box:hover {
+    background-color: #e0e0e0;
+  }
+  
+  .btn{
+    color:#7797ff;
+  }
+  .disease-img {
+    width: 50px; /* Adjust the image width */
+    height: auto;
+    margin-bottom: 5px; /* Adjust the spacing between image and text */
+    display: block;
+    margin: 0 auto; /* Center align the images */
+  }
+
+  .custom-button {
+    background-color: blue; /* Set background color to blue */
+    color: white; /* Set text color to white */
+    font-size: 16px; /* Increase font size to make it slightly bigger */
+    padding: 10px 20px; /* Add padding for better spacing */
+    border: none; /* Remove default border */
+    cursor: pointer; /* Change cursor to pointer on hover */
+    border-radius: 5px; /* Add some rounded corners */
+}
+
+/* Style on hover */
+.custom-button:hover {
+    background-color: darkblue; /* Darken the background color on hover */
+}
+
+</style>
+</head>
+<body>
+
+<div class="container">
+  <h2 style="color: #121212;">Disease</h2>
+  <a href="" class="disease-box" onclick="showPaymentBox('General')">
+    <img src="https://www.verywellhealth.com/thmb/0pF_K3PTJGIZcPiCYaa5alGSVnI=/2000x1499/filters:fill(87E3EF,1)/VirusIllustration-59ce8c1303f4020011702d0a.jpg" alt="General" class="disease-img">
+    General
+  </a><br><br>
+  <a href="#" class="disease-box" onclick="showPaymentBox('Orthopedist')">
+    <img src="https://www.biospectrumindia.com/uploads/articles/orthopedic-10254.jpg" alt="Orthopedist" class="disease-img">
+   Orthopedist
+  </a><br><br>
+  <a href="#" class="disease-box" onclick="showPaymentBox('Skin')">
+    <img src="https://www.altru.org/sites/default/files/styles/original_scaled/public/health-images/DS00433_%20DS00580_%20MY01232_IM00654_ans7_Raynaudsdiseasethu_jpg_0.jpg?itok=Xe_cvCBC" alt="Skin" class="disease-img">
+    Skin
+  </a><br><br>
+  <a href="#" class="disease-box" onclick="showPaymentBox('ent')">
+    <img src="https://image.dynamixse.com/width/1000x560/q85.png-lossy-85/https://octanecdn.com/entgasouthcom/fd8936a511a94a2390355a017a299cd0.jpg" alt="Ear, Nose, and Throat (ENT)" class="disease-img">
+    Ear, Nose, and Throat (ENT)
+  </a><br><br>
+  <a href="#" class="disease-box" onclick="showPaymentBox('Dentist')">
+    <img src="https://www.southwaterfrontdental.com/wp-content/uploads/iStock-1141062141.jpg" alt="Dentist" class="disease-img">
+    Dentist
+  </a><br><br>
+  <a href="#" class="disease-box" onclick="showPaymentBox('gynac')">
+    <img src="https://vectorified.com/images/gynecology-icon-10.png" alt="Gynecology" class="disease-img">
+    Gynecology
+  </a><br><br>
+
+  <input type="submit" value="Appointment" class="custom-button" onclick="redirectToLogin()">
+ 
+
+<script>
+  function redirectToLogin() {
+    // Check if the user is authenticated
+    var isAuthenticated = "{{ user.is_authenticated }}"; // Make sure user.is_authenticated is properly rendered in the template
+  
+    // If the user is not authenticated, redirect to the login page
+    if (isAuthenticated !== "True") {
+      window.location.href = "{% url 'login' %}";
+    }
+    else{
+      window.location.href = "{% url 'appointmenthospital' %}"
+    }
+  }
+ 
+  
+ 
+  
+function showPaymentBox(selectedDisease) {
+  document.getElementById("payment-box").style.display = "block";
+  console.log("Selected Disease: " + selectedDisease);
+}
+
+function processSelection() {
+  var selectedDisease = document.getElementById("disease").value;
+  console.log("Selected Disease: " + selectedDisease);
+}
+</script>
+
+</body>
+</html>

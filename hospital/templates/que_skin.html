@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Skin Checkup</title>
+    {% load static %}
+    
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-image: url("{% static 'bg.jpg' %}");
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .container {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 10px;
+            box-sizing: border-box;
+            max-width: 600px;
+            width: 100%;
+            color: #000;
+        }
+        h1, label {
+            text-align: center;
+        }
+        form {
+            padding: 20px 0;
+        }
+        input[type="checkbox"],
+        input[type="radio"] {
+            margin-right: 10px;
+        }
+        input[type="submit"] {
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            padding: 10px 20px;
+            cursor: pointer;
+            border-radius: 5px;
+            display: block;
+            margin: 0 auto;
+            margin-top: 10px;
+        }
+        input[type="submit"]:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Skin Checkup</h1>
+        <form id="diagnosisForm">
+            <label for="rash">Do you have any rash or skin irritation?</label><br>
+            <input type="radio" id="rashYes" name="rash" value="Yes">
+            <label for="rashYes">A) Yes</label><br>
+            <input type="radio" id="rashNo" name="rash" value="No">
+            <label for="rashNo">B) No</label><br><br>
+
+            <label for="itchiness">Are you experiencing any itchiness?</label><br>
+            <input type="radio" id="itchinessYes" name="itchiness" value="Yes">
+            <label for="itchinessYes">A) Yes</label><br>
+            <input type="radio" id="itchinessNo" name="itchiness" value="No">
+            <label for="itchinessNo">B) No</label><br><br>
+
+            <label for="bumps">Do you have any bumps or lumps on your skin?</label><br>
+            <input type="radio" id="bumpsYes" name="bumps" value="Yes">
+            <label for="bumpsYes">A) Yes</label><br>
+            <input type="radio" id="bumpsNo" name="bumps" value="No">
+            <label for="bumpsNo">B) No</label><br><br>
+
+            <label for="colorChange">Have you noticed any change in the color of your skin?</label><br>
+            <input type="radio" id="colorChangeYes" name="colorChange" value="Yes">
+            <label for="colorChangeYes">A) Yes</label><br>
+            <input type="radio" id="colorChangeNo" name="colorChange" value="No">
+            <label for="colorChangeNo">B) No</label><br><br>
+
+            <label for="sunExposure">How much time do you spend in the sun on a daily basis?</label><br>
+            <input type="radio" id="sunExposureLow" name="sunExposure" value="Low">
+            <label for="sunExposureLow">A) Low (less than 30 minutes)</label><br>
+            <input type="radio" id="sunExposureModerate" name="sunExposure" value="Moderate">
+            <label for="sunExposureModerate">B) Moderate (30 minutes to 2 hours)</label><br>
+            <input type="radio" id="sunExposureHigh" name="sunExposure" value="High">
+            <label for="sunExposureHigh">C) High (more than 2 hours)</label><br><br>
+
+            <input type="submit" value="Submit">
+        </form>
+    </div>
+</body>
+</html>

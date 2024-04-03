@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html>
+<head>
+    {% load static %}
+
+    <style>
+        /* CSS for the signup form */
+        body {
+            background-image: url("{% static 'bg.jpg' %}");
+            background-size: cover;
+            background-position: center;
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        
+        form {
+            background-color: rgba(255, 255, 255, 0.9);
+            border-radius: 8px;
+            padding: 20px;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+            max-width: 400px;
+            width: 100%;
+        }
+
+        h2 {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        label {
+            font-weight: bold;
+        }
+
+        input[type="text"],
+        input[type="email"],
+        input[type="password"] {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 20px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-sizing: border-box;
+            font-size: 16px;
+        }
+
+        input[type="submit"] {
+            width: 100%;
+            padding: 10px;
+            border: none;
+            border-radius: 4px;
+            background-color: #007bff;
+            color: #fff;
+            cursor: pointer;
+            font-size: 16px;
+        }
+
+        input[type="submit"]:hover {
+            background-color: #0056b3;
+        }
+
+        .error {
+            color: red;
+            margin-top: 10px;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <form method="POST">
+        {% csrf_token %}
+        <h2>Sign Up</h2>
+        {% if error %}
+        <p class="error">{{ error }}</p>
+        {% endif %}
+        <label for="username">New Username:</label><br>
+        <input type="text" id="username" name="username" required><br>
+        <label for="email">Email:</label><br>
+        <input type="email" id="email" name="email" required><br>
+        <label for="password1">New Password1:</label><br>
+        <input type="password" id="password1" name="password1" required><br><br>
+        <label for="password2">New Password2:</label><br>
+        <input type="password" id="password2" name="password2" required><br><br>
+        <input type="submit" value="Sign Up">
+    </form>
+</body>
+</html>

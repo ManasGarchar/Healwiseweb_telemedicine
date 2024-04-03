@@ -1,0 +1,239 @@
+<!DOCTYPE html> 
+<html lang="en"> 
+
+<head> 
+    <meta charset="UTF-8"> 
+    <meta name="viewport"
+        content="width=device-width,initial-scale=1.0"> 
+    <title>Responsive Form Card</title> 
+    <link rel="stylesheet" href= 
+    "https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"> 
+    <link rel="stylesheet" href="index.css"> 
+    
+    {% load static %}
+	<meta charset="UTF-8"> 
+	<meta name="viewport"
+		content="width=device-width,initial-scale=1.0"> 
+	<title>Responsive Form Card</title> 
+	<link rel="stylesheet" href= 
+"https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"> 
+	<link rel="stylesheet" href="index.css"> 
+    
+<style>
+        /*style.css */
+@import url( 
+'https://fonts.googleapis.com/css2?family=Poppins&display=swap'); 
+
+body { 
+	margin: 0; 
+	display: flex; 
+	align-items: center; 
+	justify-content: space-around; 
+	flex-direction: column; 
+	height: 100vh; 
+    background-image: url("{% static 'bg2.jpg' %}");
+
+	font-family: 'Poppins', sans-serif; 
+
+} 
+
+.textup { 
+
+	text-align: center; 
+	color: rgb(124, 124, 255); 
+	font-weight: 700; 
+} 
+
+i { 
+	margin-right: 3px; 
+} 
+
+.form-box { 
+	background-color: #fff; 
+	box-shadow: 0 0 10px rgb(124, 124, 255); 
+	padding: 20px; 
+   
+	border-radius: 8px; 
+	width: 500px; 
+} 
+
+form { 
+	max-width: 400px; 
+	margin: 0 auto; 
+} 
+
+.radio-group { 
+	display: flex; 
+	margin-bottom: 16px; 
+} 
+
+input[type="radio"] { 
+	margin-right: 8px; 
+} 
+
+label { 
+	display: block; 
+	margin-bottom: 8px; 
+	font-size: 17px; 
+	color: rgb(124, 124, 255); 
+	font-weight: 600; 
+} 
+
+input, 
+textarea { 
+	width: 100%; 
+	padding: 8px; 
+	margin-bottom: 12px; 
+	box-sizing: border-box; 
+	border-radius: 10px; 
+    
+
+} 
+
+button { 
+	background-color: #4b57ff; 
+	color: #fff; 
+	padding: 10px; 
+	border: none; 
+	border-radius: 25px; 
+	cursor: pointer; 
+	width: 100%; 
+	font-size: 15px; 
+	transition: .2s linear; 
+} 
+
+button:hover { 
+	background-color: #0a0c83; 
+	border: none; 
+	transform: translateY(-10px); 
+} 
+
+h1 { 
+	color: rgb(124, 124, 255); 
+}
+
+ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  background-color: transparent; /* Remove background box */
+  position: -webkit-sticky; /* Safari */
+  position: sticky;
+  color: blue; /* Set font color to blue */
+  top: 0;
+}
+
+li {
+  float: left;
+}
+
+li a {
+  display: block;
+  color: rgb(5, 54, 253);
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+}
+
+li a:hover {
+  background-color: #f8f6f6;
+}
+
+.active {
+  background-color: rgb(230, 228, 228);
+}
+
+body, html {
+  height: 100%;
+  margin: 0;
+}
+.active {
+  background-color: rgb(230, 228, 228);
+}
+
+    </style>
+    </head>
+
+<body> 
+    <ul>
+        <li><a href={% url 'about' %}>Home</a></li>
+        <li><a href={% url 'service' %}>Services</a></li>
+        <li><a href={% url 'us' %}>About Us</a></li>
+        <li><a class="active" href={% url 'review' %}>Feedback</a></li>
+
+        <li><a href={% url 'login' %}>login</a></li>
+        {% if user.is_authenticated %}
+        <li><a href="{% url 'logout' %}">Logout</a></li>
+        
+        <li><a href="{% url 'profile' %}">Profile</a></li>
+       
+        {% endif %}
+
+
+
+      </ul>
+    <h1>Feedback</h1> 
+    
+    <div class="form-box"> 
+        <div class="textup"> 
+            <i class="fa fa-solid fa-clock"></i> 
+            It only takes two minutes!! 
+        </div> 
+        <form id="feedback-form" method="POST" action="{% url 'review' %}">
+            {% csrf_token %}
+            <label for="uname"> 
+                <i class="fa fa-solid fa-user"></i> 
+                Name 
+            </label> 
+            <input type="text" id="uname"
+                name="uname" required> 
+
+            <label for="email"> 
+                <i class="fa fa-solid fa-envelope"></i> 
+                Email Address 
+            </label> 
+            <input type="email" id="email"
+                name="email" required> 
+
+            <label for="phone"> 
+                <i class="fa-solid fa-phone"></i> 
+                Phone No 
+            </label> 
+            <input type="tel" id="phone"
+                name="phone" required> 
+
+            <label for="msg"> 
+                <i class="fa-solid fa-comments"
+                style="margin-right: 3px;"></i> 
+                Write your Suggestions: 
+            </label> 
+            <textarea id="msg" name="msg"
+                    rows="4" cols="10" required> 
+            </textarea> 
+            <button type="submit"> 
+                Submit 
+            </button> 
+        </form> 
+    </div> 
+
+    <!-- Popup message -->
+    <div id="popup-message" style="display: none;">
+        Thank you for your feedback!
+    </div>
+
+    <script>
+        // JavaScript to show popup and hide after 5 seconds
+        document.getElementById('feedback-form').addEventListener('submit', function(event) {
+            event.preventDefault(); // Prevent form submission
+            document.getElementById('popup-message').style.display = 'block'; // Show popup
+            setTimeout(function() {
+                document.getElementById('popup-message').style.display = 'none'; // Hide popup after 5 seconds
+                // After hiding the popup, submit the form
+                document.getElementById('feedback-form').submit();
+            }, 5000);
+        });
+    </script>
+    </body> 
+
+</html>

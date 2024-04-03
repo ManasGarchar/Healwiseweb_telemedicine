@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Telemedicine Platform</title>
+    <style>
+        /* Reset default browser styles */
+        body, h1, h2, p, ul, li {
+            margin: 0;
+            padding: 0;
+        }
+
+        /* Header styles */
+       
+
+        
+        nav ul {
+            list-style-type: none;
+        }
+
+        nav ul li {
+            display: inline;
+            margin-right: 20px;
+        }
+
+        nav ul li a {
+            color:#79d7ff;
+            text-decoration: none;
+        }
+
+        /* Introduction section styles */
+        .introduction {
+            background-color: #ffffff;
+            padding: 50px 0;
+            text-align: center;
+        }
+
+        .advantage {
+    margin-top: 20px;
+    margin-right: 20px; /* Add margin between the boxes */
+    padding: 20px;
+    text-align: left;
+    width: 200px; /* Set width */
+    height: 100px; /* Set height */
+    max-width: 200px; /* Adjust as needed */
+    max-height: 200px;
+    background-color: rgb(136, 208, 255); /* Set background color */
+    border-radius: 5px; /* Add border radius */
+    position: relative; /* Relative positioning */
+    overflow: hidden; /* Hide overflowing text */
+    display: inline-block; /* Display boxes inline */
+}
+
+
+
+
+
+        .advantage h2 {
+            margin-bottom: 10px;
+            color: #333; /* Change heading color */
+            position: relative; /* Relative positioning */
+            z-index: 2; /* Set z-index higher than the content behind */
+        }
+
+        .advantage p {
+            margin-bottom: 10px;
+            color: #555; /* Change text color */
+            position: relative; /* Relative positioning */
+            z-index: 2; /* Set z-index higher than the content behind */
+        }
+
+        .symbol {
+            font-size: 1.5em;
+            margin-right: 10px;
+            vertical-align: middle; /* Align symbol vertically */
+        }
+
+        /* Hover effect */
+        .advantage:hover {
+            border-color: #4dbbd4; /* Change border color on hover */
+            background-color: #effaff; /* Change background color on hover */
+            box-shadow: 0px 0px 1px rgba(0, 0, 0, 0.1); /* Add shadow on hover */
+        }
+
+        .advantage:hover .headline {
+            transform: translateY(-100%); /* Move headline up on hover */
+        }
+
+        .advantage:hover .description {
+            transform: translateY(0); /* Move description down on hover */
+        }
+
+        .headline,
+        .description {
+            position: absolute; /* Absolute positioning */
+            width: 50%; /* Full width */
+            transition: transform 0.3s ease-in-out; /* Add smooth transition */
+        }
+
+        .headline {
+            top: 0; /* Position at the top */
+        }
+
+        .description {
+            bottom: 0; /* Position at the bottom */
+            transform: translateY(100%); /* Initially move description out of view */
+        }
+
+        /* Footer styles */
+        
+    </style>
+</head>
+<body>
+   
+
+    <section class="introduction">
+        <div class="container">
+            <h1>Welcome to Our Healwiseweb Platform</h1><br><br>
+            <p>Our mission is to provide accessible, high-quality healthcare services to individuals anytime, anywhere. With our telemedicine platform, you can connect with experienced healthcare professionals remotely, ensuring prompt medical assistance and personalized care.</p><br><br>
+            <div class="advantage">
+                <div class="headline">
+                    <h2>24/7 access to healthcare professionals</h2>
+                </div>
+                <div class="description">
+                    <p><span class="symbol">⏰</span> Connect with healthcare professionals round the clock for immediate assistance.</p>
+                </div>
+            </div>
+            <div class="advantage">
+                <div class="headline">
+                    <h2>Reduced wait times for appointments</h2>
+                </div>
+                <div class="description">
+                    <p><span class="symbol">⌛</span> No more long waits! Schedule appointments quickly and efficiently.</p>
+                </div>
+            </div>
+                <div class="advantage">
+                    <div class="headline">
+                    <h2>Flexible scheduling to fit your busy lifestyle</h2>
+                </div>
+                    <div class="description">
+                    <p><span class="symbol">📅</span> Choose appointment times that work best for you, even on weekends and evenings.</p>
+                </div>
+            </div>
+            </div>
+            </div>
+        </section>
+

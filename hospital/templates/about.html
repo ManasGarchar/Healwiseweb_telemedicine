@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+{% load static %}
+<style>
+body {
+  font-family: Arial, Helvetica, sans-serif;
+  margin: 0;
+  padding: 0;
+}
+
+.container {
+  background-image: url("{% static 'bg.jpg' %}");
+  background-size: cover;
+  background-position: center;
+  padding: 50px;
+}
+
+.content {
+  background-color: rgba(255, 255, 255, 0.9); /* Add a semi-transparent white background */
+  padding: 20px;
+  border-radius: 10px;
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+h1 {
+  text-align: center;
+}
+
+section {
+  margin-bottom: 40px;
+}
+
+h2 {
+  color: #4CAF50;
+  font-size: 24px;
+  margin-bottom: 10px;
+}
+
+ul {
+  list-style-type: none;
+  padding-left: 0;
+}
+
+/* li::before {
+  content: "\2022";
+  color: #4CAF50;
+  display: inline-block;
+  width: 1em;
+  margin-left: -1em;
+} */
+
+p {
+  line-height: 1.6;
+}
+
+.photo {
+  float: right;
+  margin-left: 20px;
+}
+
+@media screen and (max-width: 600px) {
+  .content {
+    padding: 10px;
+  }
+  
+  h1 {
+    font-size: 24px;
+  }
+  
+  h2 {
+    font-size: 20px;
+  }
+}
+ /* ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  background-color: #333;
+  position: -webkit-sticky;     
+  position: sticky;
+  top: 0;
+}   */
+ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  background-color: transparent; /* Remove background box */
+  position: -webkit-sticky; /* Safari */
+  position: sticky;
+  color: blue; /* Set font color to blue */
+  top: 0;
+}
+
+li {
+  float: left;
+}
+
+li a {
+  display: block;
+  color: white;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+}
+li a {
+  display: block;
+  color: rgb(5, 54, 253);
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+}
+
+li a:hover {
+  background-color: rgb(238, 235, 235);
+}
+
+.active {
+  background-color: rgb(255, 255, 255);
+}
+.active {
+  background-color: rgb(230, 228, 228);
+}
+</style>
+</head>
+<body>
+
+  <ul>
+    <li><a href={% url 'about' %}>Home</a></li>
+    
+    <li><a class="active" href={% url 'us' %}>About Us</a></li>
+    <li><a href={% url 'service' %}>Services</a></li>
+    <li><a href={% url 'review' %}>Feedback</a></li>
+    <li><a href={% url 'login' %}>login</a></li>
+    {% if user.is_authenticated %}
+    <li><a href="{% url 'logout' %}">Logout</a></li>
+    
+    <li><a href="{% url 'profile' %}">Profile</a></li>
+   
+    {% endif %}
+
+
+
+  </ul>
+
+<div class="container">
+  <div class="content">
+    <h1>Why Choose Telemedicine?</h1>
+    
+    <section>
+      <h2>Convenience</h2>
+      <p>Access healthcare from the comfort of your own home, eliminating the need for travel and waiting rooms. Telemedicine offers unparalleled convenience, allowing patients to access healthcare from the comfort of their own homes. Whether you're a busy professional, a parent with young children, or an elderly individual with limited mobility, telemedicine eliminates the need for travel and waiting rooms. With just a few clicks, you can connect with doctors, nurses, and specialists at your convenience, saving you time and hassle.</p>
+
+    </section>
+    
+    <section>
+      <h2>Accessibility</h2>
+      <p>Connect with healthcare professionals anytime, anywhere, even in rural or underserved areas. Telemedicine breaks down barriers to healthcare access, providing medical services to individuals regardless of their location. Whether you live in a rural area with limited healthcare facilities or an urban center with long wait times, telemedicine allows you to connect with healthcare professionals anytime, anywhere. By leveraging technology, telemedicine ensures that no one is left behind, even in underserved communities.</p>
+
+    </section>
+    
+    <section>
+      <h2>Cost-Effective</h2>
+      <p>Save time and money by avoiding unnecessary trips to the doctor's office or emergency room. Telemedicine can help you save both time and money by avoiding unnecessary trips to the doctor's office or emergency room. Consultations conducted via telemedicine are often more affordable than in-person visits, as they eliminate the need for transportation and other associated costs. By reducing healthcare expenses, telemedicine helps individuals and families manage their healthcare budgets more effectively.</p>
+
+    </section>
+    
+    <section>
+      <h2>Personalized Care</h2>
+      <p>Receive personalized attention and tailored treatment plans from licensed medical professionals. With telemedicine, you'll receive personalized attention and tailored treatment plans from licensed medical professionals. Telemedicine platforms enable healthcare providers to gather comprehensive medical histories, conduct virtual examinations, and offer individualized recommendations based on your unique needs. Whether you're managing a chronic condition, seeking preventive care, or addressing acute symptoms, telemedicine ensures that you receive the personalized care you deserve.</p>
+    </section>
+    
+    <section>
+      <h2>Efficiency</h2>
+      <p>Streamline the healthcare process with easy appointment scheduling, secure messaging, and electronic prescriptions. Telemedicine streamlines the healthcare process, making it easier than ever to access medical care. From scheduling appointments online to receiving electronic prescriptions, telemedicine platforms enhance efficiency at every step of the healthcare journey. With secure messaging features, you can communicate with your healthcare provider conveniently and securely, ensuring that your questions are answered promptly and your concerns are addressed effectively.</p>
+    </section>
+  </div>
+  
+</div>
+
+</body>
+</html>

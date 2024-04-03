@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dentist Checkup</title>
+    {% load static %}
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-image: url("{% static 'bg.jpg' %}");
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .container {
+            background-color: rgba(255, 255, 255, 0.9); /* Black box with transparency */
+            padding: 20px;
+            border-radius: 10px;
+            box-sizing: border-box;
+            max-width: 600px;
+            width: 100%;
+            color: #000;
+        }
+        h1, label {
+            text-align: center;
+        }
+        form {
+            padding: 20px 0;
+        }
+        input[type="radio"] {
+            margin-right: 10px;
+        }
+        input[type="submit"] {
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            padding: 10px 20px;
+            cursor: pointer;
+            border-radius: 5px;
+            display: block;
+            margin: 0 auto;
+            margin-top: 10px;
+        }
+        input[type="submit"]:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Dentist Checkup</h1>
+        <p style="text-align: center; font-style: italic; color: #666;">Please note that this diagnosis is general in nature and should not be considered a substitute for professional medical advice. Always consult a healthcare professional for accurate diagnosis and treatment.</p>
+        <form id="diagnosisForm" onsubmit="return diagnose()">
+            <label for="symptom">What is your primary dental concern?</label><br>
+            <input type="radio" id="toothache" name="symptom" value="Toothache">
+            <label for="toothache">A) Toothache</label><br>
+            <input type="radio" id="bleedingGums" name="symptom" value="Bleeding gums">
+            <label for="bleedingGums">B) Bleeding gums</label><br>
+            <input type="radio" id="sensitivity" name="symptom" value="Tooth sensitivity">
+            <label for="sensitivity">C) Tooth sensitivity</label><br>
+            <input type="radio" id="missingTooth" name="symptom" value="Missing tooth">
+            <label for="missingTooth">D) Missing tooth</label><br><br>
+
+            <input type="submit" value="Submit">
+        </form>
+    </div>
+    <script>
+        function diagnose() {
+            var symptom = document.querySelectorAll('input[name="symptom"]:checked');
+            var medicines = [];
+
+            symptom.forEach(function(symptom) {
+                var value = symptom.value;
+                switch (value) {
+                    case "Toothache":
+                        medicines.push("Non-narcotic analgesics");
+                        break;
+                    case "Bleeding gums":
+                        medicines.push("Amoxicillin or Tetracycline or Metronidazol or Penicillin");
+                        break;
+                    case "Tooth sensitivity":
+                        medicines.push("Fluorine Gel");
+                        break;
+                    case "Missing tooth":
+                        medicines.push("Request to opt for dental implant");
+                        break;
+                    // Add cases for other symptoms
+                }
+            });
+
+            var prescription = "Prescribed Medicines: " + medicines.join(", ");
+            alert(prescription);
+
+            return false; // Prevent form submission
+        }
+    </script>
+</body>
+</html>

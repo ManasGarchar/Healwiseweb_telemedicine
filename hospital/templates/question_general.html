@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Telemedicine Diagnosis</title>
+    {% load static %}
+
+    <style>
+        /* CSS for the background image and form */
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-image: url("{% static 'bg.jpg' %}");
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .container {
+            background-color: rgba(255, 255, 255, 0.9); /* Black box with transparency */
+            padding: 20px;
+            border-radius: 10px;
+            box-sizing: border-box;
+            max-width: 600px;
+            width: 100%;
+            color: #000;
+        }
+        h1, label {
+            text-align: center;
+        }
+        form {
+            padding: 20px 0;
+        }
+        input[type="checkbox"],
+        input[type="radio"] {
+            margin-right: 10px;
+        }
+        input[type="submit"] {
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            padding: 10px 20px;
+            cursor: pointer;
+            border-radius: 5px;
+            display: block;
+            margin: 0 auto;
+            margin-top: 10px;
+        }
+        input[type="submit"]:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>General Telemedicine Diagnosis</h1>
+        <p style="text-align: center; font-style: italic; color: #666;">Please note that this diagnosis is general in nature and should not be considered a substitute for professional medical advice. Always consult a healthcare professional for accurate diagnosis and treatment.</p>
+        <form id="diagnosisForm" onsubmit="return diagnose()">
+            <label for="symptoms">Question 1: What is your primary symptom?</label><br>
+            <input type="checkbox" id="fever" name="symptoms" value="Fever">
+            <label for="fever">A) Fever</label><br>
+            <input type="checkbox" id="cough" name="symptoms" value="Cough">
+            <label for="cough">B) Cough</label><br>
+            <input type="checkbox" id="headache" name="symptoms" value="Headache">
+            <label for="headache">C) Headache</label><br>
+            <input type="checkbox" id="fatigue" name="symptoms" value="Fatigue">
+            <label for="fatigue">D) Fatigue</label><br><br>
+
+            <!-- Add other questions here -->
+
+            <input type="submit" value="Submit">
+        </form>
+    </div>
+
+    <script>
+        function diagnose() {
+            var symptoms = document.querySelectorAll('input[name="symptoms"]:checked');
+            var medicines = [];
+
+            symptoms.forEach(function(symptom) {
+                var value = symptom.value;
+                switch (value) {
+                    case "Fever":
+                        medicines.push("Acetaminophen");
+                        break;
+                    case "Cough":
+                        medicines.push("Cough syrup");
+                        break;
+                    case "Headache":
+                        medicines.push("Ibuprofen");
+                        break;
+                    case "Fatigue":
+                        medicines.push("Rest");
+                        break;
+                    // Add cases for other symptoms
+                }
+            });
+
+            var prescription = "Prescribed Medicines: " + medicines.join(", ");
+            alert(prescription);
+
+            return false; // Prevent form submission
+        }
+    </script>
+</body>
+</html>

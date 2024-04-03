@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+{% load static %}
+<style>
+
+.user-profile {
+    display: flex;
+    align-items: center;
+    margin-right: 20px; /* Adjust margin as needed */
+}
+
+.user-profile img {
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    margin-right: 5px; /* Adjust margin as needed */
+}
+
+.user-profile span {
+    font-weight: bold;
+    color: white;
+    font-size: 14px;
+}
+
+ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  background-color: transparent; /* Remove background box */
+  position: -webkit-sticky; /* Safari */
+  position: sticky;
+  color: blue; /* Set font color to blue */
+  top: 0;
+}
+
+li {
+  float: left;
+}
+
+li a {
+  display: block;
+  color: rgb(5, 54, 253);
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+}
+
+li a:hover {
+  background-color: #f8f6f6;
+}
+
+.active {
+  background-color: rgb(230, 228, 228);
+}
+body, html {
+  height: 100%;
+  margin: 0;
+}
+
+.container {
+  position: relative;
+  height: 100%;
+}
+
+.navbar {
+  position: absolute;
+  top: 20px;
+  left: 20px;
+  background-color: #333;
+  color: white;
+  padding: 20px;
+}
+ 
+.bg {
+  /* The image used */
+  background-image: url("{% static 'bg.jpg' %}");
+
+  /* Full height */
+  height: 100%; 
+
+  /* Center and scale the image nicely */
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.overlay {
+  position: absolute;
+  top: 50%;
+  right: 20px;
+  transform: translateY(-50%);
+  width: 30%; /* Adjust width as needed */
+  padding: 20px;
+  background-color: rgba(255, 255, 255, 0.7); /* Transparent white background */
+  border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.forms {
+  width: 100%;
+}
+
+.forms h2 {
+  text-align: center;
+}
+
+.forms form {
+  width: 100%;
+}
+
+.forms .signup-fields {
+  display: none; /* Hide signup fields by default */
+}
+
+.forms .toggle {
+  margin-top: 20px;
+  text-align: center;
+}
+
+.forms .toggle a {
+  color: blue;
+  text-decoration: underline;
+  cursor: pointer;
+}
+#logo-container {
+  position: absolute; /* Position the container relative to its closest positioned ancestor */
+  top: 35%; /* Position it vertically at 50% from the top */
+  left: 15%; /* Position it horizontally at 50% from the left */
+  transform: translate(-50%, -50%); /* Adjust to center properly */
+}
+
+  #logo {
+  position: fixed; /* Keep the logo fixed on the screen */
+  top: 35%; /* Position it vertically at 50% from the top */
+  left: 15%; /* Position it horizontally at 50% from the left */
+  width: 1000px; /* Adjust width as needed */
+  height: auto; /* Maintain aspect ratio */
+  transition: transform 0.5s; /* Add transition effect for smooth hover */
+}
+
+
+
+#logo:hover {
+  transform: scale(1.1); /* Zoom effect on hover */
+}
+footer {
+      background-color: #00bbef; /* Background color for the footer */
+      color: white; /* Text color for the footer */
+      padding: 20px; /* Padding for content inside the footer */
+      text-align: center; /* Align content in the center */
+      width: 100%; /* Full width */
+      bottom: 0; /* Stick to the bottom */}
+
+</style>
+</head>
+
+    <ul>
+        <li><a class="active" href="#home">Home</a></li>
+        <li><a href={% url 'us' %}>About Us</a></li>
+        <li><a href={% url 'service' %}>Services</a></li>
+        <li><a href={% url 'review' %}>Feedback</a></li>
+        <li><a href={% url 'login' %}>login</a></li>
+        {% if user.is_authenticated %}
+        <li><a href="{% url 'logout' %}">Logout</a></li>
+        
+        <li><a href="{% url 'profile' %}">Profile</a></li>
+       
+        {% endif %}
+
+
+
+      </ul>
+
+
+  <div class="bg">
+    <div id="logo-container">
+
+    <img id="logo" src="{% static 'logo.png' %}">
+    
+  </div>
+   
+
+
+  </div>
+</div></div>
+  {% include 'introduction.html' %} 
+  
+  <footer>
+    <p>&copy; 2024 Healwiseweb. All rights reserved.</p>
+  </footer>
+
+
+
+</body>
+</html>
